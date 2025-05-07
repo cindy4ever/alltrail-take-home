@@ -1,0 +1,4 @@
+# Ignore data and output directories
+data/
+output/
+*.pyc
