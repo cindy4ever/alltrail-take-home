@@ -1,87 +1,85 @@
-AllTrails Data Engineering Take-Home
+# AllTrails Data Engineering Take-Home Assignment
 
-📌 Objective
+This repository contains a batch-processing job to analyze the relationship between user signup and their first and second GPS recordings in the AllTrails platform.
 
-This project processes and analyzes user signup and recording activity data to explore the relationship between early activity engagement and Pro subscription conversion on the AllTrails platform. The result is a clean, structured dataset that data analysts can use for further insights.
+## 📁 Project Structure
 
-🗂️ Project Structure
-
-alltrails-project/
-├── data/                     # Folder where downloaded .tsv files will go
-├── output/                   # Folder for processed CSV outputs
+all-trails-take-home/
+├── data/ # Folder where downloaded data files will be stored
 ├── scripts/
-│   ├── download_data.py      # Script to download datasets from Google Drive
-│   └── process_data.py       # Script to process and join datasets
+│ ├── download_data.py # Script to download datasets from Google Drive
+│ └── process_data.py # Script to process the data into clean structured CSVs
 ├── tests/
-│   ├── test_download_data.py # Unit tests for data download
-│   └── test_process_data.py  # Unit tests for processing logic
-└── README.md
+│ └── test_process_data.py # Unit tests for data processing
+├── README.md # This file
+├── requirements.txt # Python dependencies
+└── .gitignore
 
-🧪 How to Run
 
-1. Install Dependencies
+---
 
-pip install -r requirements.txt
+## 📥 Data Sources
 
-Requirements
+- `users_2017.tsv`: User signup and Pro subscription data
+- `recordings_2017.tsv`: Activity recordings including summary stats
 
-pandas
-gdown
+These are downloaded from Google Drive using their file IDs.
 
-2. Download Data
+---
 
-python scripts/download_data.py
+## ▶️ How to Run
 
-This will download:
+1. **Clone the repository**:
 
-users_2017.tsv
+```
+git clone https://github.com/yourusername/all-trails-take-home.git
+cd all-trails-take-home
+```
+Install dependencies:
 
-recordings_2017.tsv
+```pip install -r requirements.txt```
 
-...into the data/ directory using Google Drive file IDs.
+Download the data:
 
-3. Process Data
+```python scripts/download_data.py```
 
-python scripts/process_data.py
+Process the data:
 
-This generates two output files in the output/ directory:
+```python scripts/process_data.py```
 
-first_recordings_output.csv
+This will generate two CSV files:
 
-second_recordings_output.csv
+### output/first_recordings.csv
 
-🧼 Data Handling
+### output/second_recordings.csv
 
-The output files:
+✅ Unit Tests
+To run unit tests:
+```pytest tests/```
 
-Join each user with their first and second recording (if available)
+📄 Output
+The final output includes:
 
-Flatten the Recording_Summary JSON field into columns like summary_distance, summary_duration
+1. Cleaned user data
 
-Add hours_to_first_recording and hours_to_second_recording as calculated fields
+2. First and second recording information
 
-🧪 Tests
+3. 
+🧠 Assumptions
+Only the first two recordings per user are relevant for this analysis.
 
-Run unit tests for both download and processing steps:
+Invalid or malformed JSON in Recording_Summary is skipped with a warning.
 
-python -m unittest discover tests/
+Time differences are calculated in hours and rounded to two decimal places.
 
-📌 Assumptions
+🚀 Next Steps (If More Time/Data Were Available)
+Integrate into a data pipeline using Airflow or Prefect
 
-Only the first and second recordings are used for this analysis.
+Store output in a data warehouse (e.g., BigQuery, Snowflake)
 
-Timestamps are assumed to be in a uniform timezone.
+Visualize conversion patterns via BI tools
 
-Invalid or missing Recording_Summary fields are handled as empty dicts.
+Include user engagement metrics beyond recordings
 
-All users in the user dataset have at least a signup date.
-
-🚀 Next Steps (If More Time)
-
-Use PySpark for large-scale processing instead of Pandas.
-
-Upload outputs to a cloud warehouse (e.g., Snowflake or BigQuery).
-
-Add orchestration with Airflow or Prefect.
-
-Perform statistical analysis on correlation between early engagement and subscription.
+🛠️ Requirements
+See requirements.txt for all dependencies.
