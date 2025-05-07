@@ -3,7 +3,7 @@
 This repository contains a batch-processing job to analyze the relationship between user signup and their first and second GPS recordings in the AllTrails platform.
 
 ## 📁 Project Structure
-
+```
 all-trails-take-home/
 ├── data/ # Folder where downloaded data files will be stored
 ├── scripts/
@@ -14,6 +14,7 @@ all-trails-take-home/
 ├── README.md # This file
 ├── requirements.txt # Python dependencies
 └── .gitignore
+```
 
 
 ---
@@ -49,9 +50,9 @@ Process the data:
 
 This will generate two CSV files:
 
-### output/first_recordings.csv
+1. output/first_recordings.csv
 
-### output/second_recordings.csv
+2. output/second_recordings.csv
 
 ✅ Unit Tests
 To run unit tests:
@@ -64,22 +65,22 @@ The final output includes:
 
 2. First and second recording information
 
-3. 
+3. Time difference (in hours) between signup and recording
+
+
 🧠 Assumptions
-Only the first two recordings per user are relevant for this analysis.
+1. Only the first two recordings per user are relevant for this analysis.
 
-Invalid or malformed JSON in Recording_Summary is skipped with a warning.
+2. Invalid or malformed JSON in Recording_Summary is skipped with a warning.
 
-Time differences are calculated in hours and rounded to two decimal places.
+3. Time differences are calculated in hours and rounded to two decimal places.
 
 🚀 Next Steps (If More Time/Data Were Available)
-Integrate into a data pipeline using Airflow or Prefect
+1. Integrate into a data pipeline using Airflow or Prefect
 
-Store output in a data warehouse (e.g., BigQuery, Snowflake)
-
-Visualize conversion patterns via BI tools
-
-Include user engagement metrics beyond recordings
+2. Store output in a data warehouse (e.g., BigQuery, Snowflake)
+   
+3. Include user engagement metrics beyond recordings
 
 🛠️ Requirements
 See requirements.txt for all dependencies.
